@@ -9,12 +9,13 @@ public class Exercise {
     public Exercise() {
     }
 
-    public int getId() {
-        return id;
+    public Exercise(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
