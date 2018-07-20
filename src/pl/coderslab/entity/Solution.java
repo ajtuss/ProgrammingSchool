@@ -26,6 +26,11 @@ public class Solution {
         return id;
     }
 
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getCreated() {
         return created;
     }

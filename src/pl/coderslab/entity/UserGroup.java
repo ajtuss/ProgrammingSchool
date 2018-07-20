@@ -6,7 +6,6 @@ public class UserGroup {
     private String name;
 
 
-
     public UserGroup() {
     }
 
@@ -14,8 +13,17 @@ public class UserGroup {
         setName(name);
     }
 
+    public UserGroup(int id, String name) {
+        setId(id);
+        setName(name);
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
