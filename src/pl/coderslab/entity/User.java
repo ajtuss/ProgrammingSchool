@@ -18,6 +18,14 @@ public class User {
         setUserGroup(userGroup);
     }
 
+    public User(int id, String username, String email, String password, UserGroup userGroup) {
+        setId(id);
+        setUsername(username);
+        setEmail(email);
+        setPassword(password);
+        setUserGroup(userGroup);
+    }
+
     public int getId() {
         return id;
     }
