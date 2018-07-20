@@ -10,12 +10,22 @@ public class Exercise {
     }
 
     public Exercise(String title, String description) {
-        this.title = title;
-        this.description = description;
+        setTitle(title);
+        setDescription(description);
+    }
+
+    public Exercise(int id, String title, String description) {
+        setId(id);
+        setTitle(title);
+        setDescription(description);
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
