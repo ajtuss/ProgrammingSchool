@@ -22,6 +22,15 @@ public class Solution {
         setUser(user);
     }
 
+    public Solution(int id, Date created, Date updated, String description, Exercise exercise, User user) {
+        setId(id);
+        setCreated(created);
+        setUpdated(updated);
+        setDescription(description);
+        setExercise(exercise);
+        setUser(user);
+    }
+
     public int getId() {
         return id;
     }
