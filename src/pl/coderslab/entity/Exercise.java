@@ -21,7 +21,7 @@ public class Exercise {
         setDescription(description);
     }
 
-    public Exercise(int id, String title, String description) {
+    private Exercise(int id, String title, String description) {
         setId(id);
         setTitle(title);
         setDescription(description);
@@ -31,7 +31,7 @@ public class Exercise {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 

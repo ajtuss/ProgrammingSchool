@@ -25,7 +25,7 @@ public class User {
         setUserGroup(userGroup);
     }
 
-    public User(int id, String username, String email, String password, UserGroup userGroup) {
+    private User(int id, String username, String email, String password, UserGroup userGroup) {
         setId(id);
         setUsername(username);
         setEmail(email);
@@ -37,7 +37,7 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
