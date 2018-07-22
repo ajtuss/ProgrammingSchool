@@ -47,7 +47,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.username = username;
     }
 
     public String getEmail() {
@@ -64,7 +64,7 @@ public class User {
 
     public void setPassword(String password) {
 
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public UserGroup getUserGroup() {
@@ -101,12 +101,12 @@ public class User {
         List<User> listUsers = new ArrayList<>();
         for (String[] tab : list) {
             int id = Integer.parseInt(tab[0]);
-            String name = tab[1];
+            String username = tab[1];
             String email = tab[2];
             String password = tab[3];
             int userGroupId = Integer.parseInt(tab[4]);
             UserGroup userGroup = UserGroup.loadById(userGroupId);
-            User user = new User(id, name, email, password, userGroup);
+            User user = new User(id, username, email, password, userGroup);
             listUsers.add(user);
         }
 
@@ -123,12 +123,12 @@ public class User {
         } else {
             String[] tab = list.get(0);
             int id = Integer.parseInt(tab[0]);
-            String name = tab[1];
+            String username = tab[1];
             String email = tab[2];
             String password = tab[3];
             int userGroupId = Integer.parseInt(tab[4]);
             UserGroup userGroup = UserGroup.loadById(userGroupId);
-            return new User(id, name, email, password, userGroup);
+            return new User(id, username, email, password, userGroup);
         }
     }
 
@@ -148,7 +148,7 @@ public class User {
     }
 
     private int update() throws SQLException {
-        String query = "UPDATE users SET username = ?, email = ?, password = ?, use_group_id = ? WHERE id = ?";
+        String query = "UPDATE users SET username = ?, email = ?, password = ?, user_group_id = ? WHERE id = ?";
         List<String> params = new ArrayList<>();
         params.add(getUsername());
         params.add(getEmail());
@@ -162,15 +162,15 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + getUsername() + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", userGroup=" + userGroup +
                 '}';
     }
 
-    public boolean checkPassword(String password){
-        if (BCrypt.checkpw(password, getPassword())){
+    public boolean checkPassword(String password) {
+        if (BCrypt.checkpw(password, getPassword())) {
             return true;
         }
         return false;
@@ -179,7 +179,13 @@ public class User {
 
     public static void main(String[] args) {
         try {
-            new User("Marek", "marek@gmail.com", "123456", UserGroup.loadById(5)).save();
+            //User.deleteAll();
+            User user = User.loadById(1);
+            user.setPassword("qwerty");
+            user.save();
+            user = User.loadById(3);
+            user.setPassword("12345");
+            user.save();
             System.out.println(Arrays.toString(User.loadAll().toArray()));
         } catch (Exception e) {
             e.printStackTrace();
