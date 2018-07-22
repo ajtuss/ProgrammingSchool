@@ -5,13 +5,17 @@ import java.util.Scanner;
 public class MainController {
 
     public static void main(String[] args) {
+        startApp();
+    }
+
+    public static void startApp() {
         int action = choseAction();
         switch (action) {
             case 1:
                 System.out.println("Option1");
                 break;
             case 2:
-                System.out.println("Option2");
+                UsersGroupController.startManagingUsers();
                 break;
             case 3:
                 System.out.println("Option3");
