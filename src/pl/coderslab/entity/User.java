@@ -1,5 +1,6 @@
 package pl.coderslab.entity;
 
+import pl.coderslab.service.BCrypt;
 import pl.coderslab.service.DbService;
 
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class User {
         setId(id);
         setUsername(username);
         setEmail(email);
-        setPassword(password);
+        this.password = password;
         setUserGroup(userGroup);
     }
 
@@ -46,7 +47,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public String getEmail() {
@@ -166,6 +167,14 @@ public class User {
                 ", password='" + password + '\'' +
                 ", userGroup=" + userGroup +
                 '}';
+    }
+
+    public boolean checkPassword(String password){
+        if (BCrypt.checkpw(password, getPassword())){
+            return true;
+        }
+        return false;
+
     }
 
     public static void main(String[] args) {
